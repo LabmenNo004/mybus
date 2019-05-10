@@ -4,7 +4,6 @@ public class sql {
     static Connection conn = null;
 
     public static void main(String[] args) {
-        LoadDriver();
         getConn();
         try {
             Statement stmt = conn.createStatement();
@@ -19,16 +18,9 @@ public class sql {
         }
     }
 
-    public static void LoadDriver() {
-            try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-            } catch (Exception ex) {
-            }
-        }
-
     static void getConn() {
         try {
-            String url = "jdbc:mysql://localhost:3306/mybus?user=root&password=12345678" +
+            String url = "jdbc:mysql://localhost:3306/school?user=root&password=12345678" +
                     "&serverTimezone=UTC";
             conn = DriverManager.getConnection(url);
             System.out.println(conn);
