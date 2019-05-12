@@ -4,7 +4,7 @@ public class LineList {
     int price;
 
     public void addNode (LineNode node){
-        LineNode cur=start;
+/*        LineNode cur=start;
         while (cur.next!=null&&cur.getNextStation()!=node.getStationName()) {
             cur = cur.next;
         }
@@ -22,7 +22,10 @@ public class LineList {
         while (end.next!=null&&end.getNextStation().equals(end.next.getStationName())) end=end.next;
         pre.next=end.next;
         end.next=node.next;
-        node.next=cur;
+        node.next=cur;*/
+        LineNode cur=start;
+        while (cur.next!=null) cur=cur.next;
+        cur.next=node;
     }
     public boolean canReach(String from,String dest){
         for (LineNode cur=search(from);cur!=null;cur=cur.next)
