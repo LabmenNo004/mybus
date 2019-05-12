@@ -1,26 +1,31 @@
 import java.sql.*;
 
 public class sql {
-    static Connection conn = null;
+    Connection conn = null;
+    ResultSet rs = null;
 
-    public static void main(String[] args) {
+    public ResultSet getResult(String sql){
         getConn();
         try {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select ID from student");
-            while (rs.next()){
-                System.out.println(rs.getString("ID"));
-            }
+            return rs;
+        } catch (Exception ex) {
+            System.out.println("error");
+        }
+        return null;
+    }
+    public void close(){
+        try {
             rs.close();
             conn.close();
         } catch (Exception ex) {
             System.out.println("error");
         }
     }
-
-    static void getConn() {
+    public void getConn() {
         try {
-            String url = "jdbc:mysql://localhost:3306/school?user=root&password=12345678" +
+            String url = "jdbc:mysql://localhost:3306/mybus?user=root&password=12345678" +
                     "&serverTimezone=UTC";
             conn = DriverManager.getConnection(url);
             System.out.println(conn);
