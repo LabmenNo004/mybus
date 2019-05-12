@@ -13,11 +13,11 @@ public class sql {
         } catch (Exception ex) {
             System.out.println("error");
         }
+        close();
         return null;
     }
     public void close(){
         try {
-            rs.close();
             conn.close();
         } catch (Exception ex) {
             System.out.println("error");
