@@ -3,17 +3,25 @@ import java.sql.*;
 public class sql {
     static Connection conn = null;
     static ResultSet rs = null;
+    static Statement stmt= null;
 
     public static ResultSet getResult(String sql){
         getConn();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select ID from student");
+            rs = stmt.executeQuery("select ID from student");
             return rs;
         } catch (Exception ex) {
             System.out.println("error");
+        }finally{
+            close();
+            if (stmt!=null){
+                try{
+                    stmt.close();
+                } catch (SQLException sqlEx) { }
+                stmt=null;
+            }
         }
-        close();
         return null;
     }
     public static void close(){
@@ -22,6 +30,7 @@ public class sql {
         } catch (Exception ex) {
             System.out.println("error");
         }
+        conn=null;
     }
     public static void getConn() {
         try {
@@ -57,17 +66,13 @@ public class sql {
             }
         }
         String sql="select "+IDName+" from "+tableName+" where "+tableName+"_name="+name+" and password="+password+";";
-        ResultSet rs=getResult(sql);
+        getResult(sql);
         try{
-            if (rs.wasNull()) return -1;    //-------待测试--------
-            rs.next();
+            if (!rs.next()) return -1;
             int temp=rs.getInt(IDName);
             rs.close();
             return temp;
         } catch (SQLException ex) {
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
             return -2;
         }
     }
