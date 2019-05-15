@@ -1,3 +1,4 @@
+import java.sql.ResultSet;
 import java.util.Scanner;
 
 public class main {
@@ -5,12 +6,13 @@ public class main {
         System.out.println("Hello! This is Smart Bus system terminal.");
         start();
     }
+    static String name;
     public static void start(){
         System.out.println("You are\n1)User\n2)Driver\n3)Administrator");
         Scanner input = new Scanner(System.in);
         int temp=input.nextInt();
         System.out.print("Please insert your name:");
-        String name = input.next();
+        name = input.next();
         System.out.print("Password:");
         String pw = input.next();
         int ID;
@@ -47,7 +49,22 @@ public class main {
         }
     }
     public static void showUser(int ID){
+        System.out.println("Hello, "+name+"! Select one option:\n1)View record\n2)Plan my route\n3)Check balance");
+        Scanner input=new Scanner(System.in);
+        int temp=input.nextInt();
+        switch (temp){
+            case 1:{
+                String sql="";
 
+            }
+            case 2:{
+                String sql="";
+            }
+            case 3:{
+                String sql="select balance from user where uid="+ID;
+                ResultSet rs=mysql.getResult(sql);
+            }
+        }
     }
     public static void showDriver(int ID){
 
