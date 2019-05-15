@@ -1,17 +1,14 @@
 public class LineNode {
     private String stationName;
-    private String nextStation;
+    int time;
     LineNode next=null;
 
-    LineNode(String stationName,String nextStation){
+    LineNode(String stationName,int time){
         this.stationName=stationName;
-        this.nextStation=nextStation;
+        this.time=time;
     }
     public String getStationName() {
         return stationName;
     }
 
-    public String getNextStation() {
-        return nextStation;
-    }
 }

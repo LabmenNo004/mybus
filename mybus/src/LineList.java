@@ -1,28 +1,12 @@
 public class LineList {
-    LineNode start=new LineNode("start","start");
+    LineNode start=new LineNode("start",0);
     String lineName;
     int price;
-
+    LineList(String lineName,int price){
+        this.lineName=lineName;
+        this.price=price;
+    }
     public void addNode (LineNode node){
-/*        LineNode cur=start;
-        while (cur.next!=null&&cur.getNextStation()!=node.getStationName()) {
-            cur = cur.next;
-        }
-        addAfter(cur,node);
-
-        cur=start.next;
-        LineNode pre=start;
-        String nextStation=node.getNextStation();
-        while (cur!=null&&!(cur.getStationName().equals(nextStation))){
-            cur=cur.next;
-            pre=pre.next;
-        }
-        if (cur==null) return;
-        LineNode end = cur;
-        while (end.next!=null&&end.getNextStation().equals(end.next.getStationName())) end=end.next;
-        pre.next=end.next;
-        end.next=node.next;
-        node.next=cur;*/
         LineNode cur=start;
         while (cur.next!=null) cur=cur.next;
         cur.next=node;
